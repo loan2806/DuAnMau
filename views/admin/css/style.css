@@ -1,0 +1,189 @@
+    
+/* ====================
+   GLOBAL STYLES
+   ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ====================
+   HEADER
+   ==================== */
+.main-header {
+    background-color: #fff;
+    padding: 1rem 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.right-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.main-nav {
+    display: flex;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.nav-link {
+    color: #555;
+    padding: 10px 15px;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #007bff;
+}
+
+.search-form {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.search-input {
+    border: none;
+    padding: 8px 10px;
+    outline: none;
+}
+
+.search-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+.search-button svg {
+    width: 16px;
+    height: 16px;
+    fill: #fff;
+}
+
+/* ====================
+   SIDEBAR
+   ==================== */
+.sidebar-nav {
+    width: 250px;
+    background-color: #fff;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar-list {
+    list-style: none;
+}
+
+.sidebar-item {
+    margin-bottom: 10px;
+}
+
+.sidebar-link {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar-link:hover {
+    background-color: #f0f0f0;
+    color: #007bff;
+}
+
+.submenu {
+    list-style: none;
+    padding-left: 20px;
+    margin-top: 5px;
+    /* Ẩn submenu theo mặc định, có thể dùng JS để hiện */
+    /* display: none; */
+}
+
+.submenu-item {
+    margin-bottom: 5px;
+}
+
+.submenu-link {
+    display: block;
+    padding: 5px 15px;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.submenu-link:hover {
+    color: #007bff;
+}
+
+/* ====================
+   UTILITIES
+   ==================== */
+.flex {
+    display: flex;
+    align-items: center;
+}
+/* ====================
+   MAIN CONTENT LAYOUT
+   ==================== */
+.main {
+    display: flex;
+    min-height: calc(100vh - 80px); /* 80px là chiều cao ví dụ của header và footer */
+}
+
+.main > aside {
+    width: 250px; /* Chiều rộng sidebar, có thể tùy chỉnh */
+    flex-shrink: 0;
+}
+
+.main > main {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #fff;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
