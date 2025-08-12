@@ -13,6 +13,10 @@ match ($act) {
     'update_category'=>(new CategoryController())->haldleUpdateCategory(),
     'them-danh-muc'=>(new CategoryController())->AddControllerView(),
     'delete_category'=>(new CategoryController())->haldleDeleteCategory(),
+    'list_product'=>(new ProductController())->Home(),
+    'detail_product'=>(new ProductController())->Productdetail($_GET['id']),
+    'add_product'=>(new ProductController())->Addproduct(),
+
 
 };
 ?>

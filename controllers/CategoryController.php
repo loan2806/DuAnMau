@@ -22,11 +22,22 @@ class CategoryController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // echo "khong vui";
             print_r($_POST);
+            
+            if(!empty($_POST['cat_name'])){
+                 $cat_name = trim($_POST['cat_name']);
+                 $this->modelCategory->addCategory($cat_name);
+                 header('Location: ?mode=admin&act=category');
+            }else{
+                $err = 'Thêm danh mục không thành công';
+                require_once './views/category/addcategory.php';
+            }
+            
         } else {
             $title = "Thêm danh mục";
-            require_once './views/admin/addcategory.php';
+            require_once './views/admin/category/addcategory.php';
         }
     }
+        
     public function haldleEditCategory()
     {
         $id = $_GET['id'] ?? null;

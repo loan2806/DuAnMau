@@ -43,4 +43,10 @@ class CategoryModel
         $data = $stmt->execute();
         return $data;
     }
+    public function addCategory($cat_name){
+        $sql= "INSERT INTO `category`( `cat_name`) VALUES ('$cat_name')";
+        $stmt = $this->conn->prepare($sql);
+         $data = $stmt->execute();
+        return $data;
+    }
 }

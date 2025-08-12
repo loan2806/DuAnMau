@@ -8,8 +8,8 @@ require_once './views/admin/header.php';
         ?>
     </aside>
     <main>
-
-        <a href="?mode=admin&act=addcategory">Thêm</a>
+    <link rel="stylesheet" href="./views/admin/css/style.css">
+    <a href="?mode=admin&act=addcategory">Thêm</a>
         <table>
             <thead>
                 <tr>
@@ -26,7 +26,7 @@ require_once './views/admin/header.php';
                         <td><?= $cate['cat_name'] ?></td>
                         <td>
                             <a href="?mode=admin&act=edit_category&id=<?= $cate['id'] ?>">Sửa</a>
-                            <a href="?mode=admin&act=delete_category&id=<?= $cate['id'] ?>" onclick="return(confirm('Bạn có chắc muốn xóa k?')">Xóa</a>
+                            <a href="?mode=admin&act=delete_category&id=<?= $cate['id'] ?>" onclick="return(confirm('Bạn có chắc muốn xóa k?'))">Xóa</a>
                         </td>
                     </tr>
                 <?php endforeach;  ?>

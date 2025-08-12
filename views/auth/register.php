@@ -90,7 +90,7 @@
             <button type="submit">Đăng ký</button>
         </form>
         <div class="link">
-            Đã có tài khoản? <a href="index.php?mode=login">Đăng nhập</a>
+            Đã có tài khoản? <a href="?mode=auth&act=login">Đăng nhập</a>
         </div>
     </div>
 </body>
