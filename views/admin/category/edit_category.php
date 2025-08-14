@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,8 +11,8 @@
     <h1>Sửa danh mục</h1>
     <form action="?mode=admin&act=update_category" method="post">
         <label for="name">Name</label>
-        <input type="text" name="cat_name" id="" value="<?=$category['cat_name'] ?>">
-        <input type="hidden" name="id" id="" value="<?=$category['id'] ?>">
+        <input type="text" name="cat_name" id="" value="<?= $category['cat_name'] ?>">
+        <input type="hidden" name="id" id="" value="<?= $category['id'] ?>">
         <br>
         <button>Cập nhật</button>
     </form>

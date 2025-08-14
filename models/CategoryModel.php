@@ -8,12 +8,7 @@ class CategoryModel
         $this->conn = connectDB();
     }
 
-    // Viết truy vấn danh sách sản phẩm 
-    public function getAllProduct() {}
-    //Viết thêm hàng mới
-    // public function AddCategory($data){
-    //     $sql = "insert into "
-    // }
+
     public function danhsach()
     {
         $sql = "SELECT * FROM `category`";

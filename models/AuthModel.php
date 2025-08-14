@@ -34,17 +34,29 @@ class AuthModel
     }
 
     //tạo thông tin người dùng mới
-    public function createUser($name, $email, $password)
-    {
-        $sql = "INSERT INTO `users` ( `name`, `email`, `password`, `role`) VALUES ( :user_name, :email, :password, 1);";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute([
-            ":user_name" => $name,
-            ":email" => $email,
-            ":password" => $password,
+    // public function createUser($name, $email, $password)
+    // {
+    //     $sql = "INSERT INTO `users` ( `name`, `email`, `password`, `role`) VALUES ( :user_name, :email, :password, 1);";
+    //     $stmt = $this->conn->prepare($sql);
+    //     $stmt->execute([
+    //         ":user_name" => $name,
+    //         ":email" => $email,
+    //         ":password" => $password,
             
-        ]);
-    }
+    //     ]);
+    // }
+    public function createUser($name, $email, $password)
+{
+    $sql = "INSERT INTO `users` (`name`, `email`, `password`, `role`)
+            VALUES (:user_name, :email, :password, 0)";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute([
+        ":user_name" => $name,
+        ":email" => $email,
+        ":password" => $password
+    ]);
+}
+
    
     
 }

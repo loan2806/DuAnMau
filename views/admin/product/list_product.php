@@ -8,41 +8,42 @@ require_once './views/admin/header.php';
         ?>
     </aside>
     <main>
-    <link rel="stylesheet" href="./views/admin/css/style.css">
-    <a href="?mode=admin&act=add_product">Thêm sản phẩm</a>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Tên sản phẩm</th>
-                <th>Ảnh sản phẩm</th>
-                <th>Giá</th>
-                <th>Số lượng</th>
-                <th>Giá khuyến mãi</th>
-                <th>Hành động</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <?php 
+        <link rel="stylesheet" href="./views/admin/css/style.css">
+        <a href="?mode=admin&act=add_product">Thêm sản phẩm</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Ảnh sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Giá khuyến mãi</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <?php
                     foreach ($product as $pro):
-                ?>
-                <td><?= $pro['id'] ?></td>
-                <td><?= $pro['pro_name'] ?></td>
-                <td><img src="<?=$pro['img'] ?>" alt=""></td>
-                <td><?= $pro['price'] ?></td>
-                <td><?= $pro['quantity'] ?></td>
-                <td><?= $pro['sale'] ?></td>
-                <td>
-                    <a href="?mode=">Sửa</a>
-                    <a href="?mode=admin&act=detail_product&id=<?= $pro['id'] ?>">Chi tiết</a>
-                </td>
-                
-            </tr>
-                <?php endforeach; ?>
-        </tbody>
-    </table>
-        
+                    ?>
+                        <td><?= $pro['id'] ?></td>
+                        <td><?= $pro['pro_name'] ?></td>
+                        <td><img src="<?= BASE_URL . $pro['img'] ?>" alt="" width="90px"></td>
+                        <td><?= $pro['price'] ?></td>
+                        <td><?= $pro['quantity'] ?></td>
+                        <td><?= $pro['sale'] ?></td>
+                        <td>
+                            <a style="color: black;" href="?mode=admin&act=edit_product&id=<?= $pro['id'] ?>">Sửa</a>
+                            <a style="color: black;" href="?mode=admin&act=detail_product&id=<?= $pro['id'] ?>">Chi tiết</a>
+                            <a href="?mode=admin&act=delete_product&id=<?= $pro['id'] ?>" onclick="return(confirm('Bạn có chắc muốn xóa k?'))">Xóa</a>
+
+                        </td>
+
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
 
 
     </main>

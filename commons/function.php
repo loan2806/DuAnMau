@@ -46,10 +46,17 @@ function views( $view, $data = [])
     extract($data);
     
     require_once PATH_ROOT . "/$view.php";
-}function checkLoi($data)
+}
+function checkLoi($data)
 {
     echo "<pre>";
     var_dump($data);
     echo "</pre>";
     die;
+}
+function checkAdmin() {
+    if (empty($_SESSION['islogin']) || $_SESSION['role'] != 1) {
+        header('Location: ' . BASE_URL . '?mode=auth&act=login');
+        exit();
+    }
 }

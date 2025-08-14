@@ -8,8 +8,8 @@ require_once './views/admin/header.php';
         ?>
     </aside>
     <main>
-    <link rel="stylesheet" href="./views/admin/css/style.css">
-    <a href="?mode=admin&act=addcategory">Thêm</a>
+        <link rel="stylesheet" href="./views/admin/css/style.css">
+        <a href="?mode=admin&act=them-danh-muc">Thêm danh mục</a>
         <table>
             <thead>
                 <tr>

@@ -12,19 +12,33 @@ require_once './controllers/ProductController.php';
 require_once './controllers/DashboardController.php';
 require_once './controllers/CategoryController.php';
 require_once './controllers/AuthController.php';
+require_once './controllers/HomeController.php';
 
 // Require toàn bộ file Models
 require_once './models/ProductModel.php';
 require_once './models/AuthModel.php';
 require_once './models/CategoryModel.php';
+require_once './models/CartModel.php';
 
 // Route
-// Route
 if (isset($_GET['mode']) && $_GET['mode'] == 'admin') {
+    // Chỉ admin (role = 1) mới được vào
+    if (empty($_SESSION['islogin']) || $_SESSION['role'] != 1) {
+        header('Location: ' . BASE_URL . '?mode=auth&act=login');
+        exit();
+    }
     require_once('views/admin/index.php');
 } else {
     require_once('views/client/index.php');
 }
+
+
+// Route
+// if (isset($_GET['mode']) && $_GET['mode'] == 'admin') {
+//     require_once('views/admin/index.php');
+// } else {
+//     require_once('views/client/index.php');
+// }
 
 // $act = $_GET['act'] ?? '/';
 
