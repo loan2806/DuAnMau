@@ -27,9 +27,16 @@ class CategoryModel
     {
         $sql = "UPDATE category SET cat_name = :name WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);// bindValue gán gtri trực tiếp, k thay đổi gtri trước execute
         $stmt->bindValue(':id', (int)$id, PDO::PARAM_INT);
         return $stmt->execute();
+    }
+    public function checkProductById($id)// ktra bảng product có sp hay chưa
+    {
+        $sql = "SELECT * FROM product where cate_id = $id";
+        $stmt = $this->conn->query($sql);
+        $data = $stmt->fetch();
+        return $data;
     }
     public function deleteCategory($id)
     {
@@ -38,10 +45,11 @@ class CategoryModel
         $data = $stmt->execute();
         return $data;
     }
-    public function addCategory($cat_name){
-        $sql= "INSERT INTO `category`( `cat_name`) VALUES ('$cat_name')";
+    public function addCategory($cat_name)
+    {
+        $sql = "INSERT INTO `category`( `cat_name`) VALUES ('$cat_name')";
         $stmt = $this->conn->prepare($sql);
-         $data = $stmt->execute();
+        $data = $stmt->execute();
         return $data;
     }
 }

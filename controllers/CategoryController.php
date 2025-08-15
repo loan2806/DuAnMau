@@ -3,7 +3,6 @@
 class CategoryController
 {
     public $modelCategory;
-
     public function __construct()
     {
         $this->modelCategory = new CategoryModel();
@@ -22,22 +21,21 @@ class CategoryController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // echo "khong vui";
             print_r($_POST);
-            
-            if(!empty($_POST['cat_name'])){
-                 $cat_name = trim($_POST['cat_name']);
-                 $this->modelCategory->addCategory($cat_name);
-                 header('Location: ?mode=admin&act=category');
-            }else{
+
+            if (!empty($_POST['cat_name'])) {
+                $cat_name = trim($_POST['cat_name']);
+                $this->modelCategory->addCategory($cat_name);
+                header('Location: ?mode=admin&act=category');
+            } else {
                 $err = 'Thêm danh mục không thành công';
                 require_once './views/category/addcategory.php';
             }
-            
         } else {
             $title = "Thêm danh mục";
             require_once './views/admin/category/addcategory.php';
         }
     }
-        
+
     public function haldleEditCategory()
     {
         $id = $_GET['id'] ?? null;
@@ -55,8 +53,16 @@ class CategoryController
         $id = $_GET['id'] ?? null;
 
         if ($id) {
-            $category = $this->modelCategory->deleteCategory($id);
-         header('Location: ' . BASE_URL . '?mode=admin&act=category');
+            // var_dump($this->modelCategory->checkProductById($id));
+            $check = $this->modelCategory->checkProductById($id); // Kiểm tra xem là có sản phẩm nào thuộc danh mục này không
+            if ($check === false) { // Nếu không có sản phẩm nào thuộc danh mục đấy, thì mới cho xóa
+                $category = $this->modelCategory->deleteCategory($id);
+            } else { // Còn có sản phẩm thuộc danh mục thì không cho xóa
+                echo "Không thể xóa danh mục";
+                exit;
+            }
+
+            header('Location: ' . BASE_URL . '?mode=admin&act=category');
             exit;
         } else {
             echo "Khong tim thay danh muc";

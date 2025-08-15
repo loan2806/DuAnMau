@@ -128,7 +128,7 @@
 
   ?>
   <div class="login-box">
-    <div class="logo">CAS FRUIT</div>
+    <div class="logo">MORNING FRUIT</div>
     <h2>Đăng nhập</h2>
     <?php if (!empty($error)): ?>
       <p><?= $error ?></p>

@@ -71,10 +71,10 @@ class ProductController
             }
             $img = $_FILES['img'];
             $url = $_POST['img_old'] ?? null;
-            if ($img && $img['error'] == 0 && $img['size']  >  0) {
-                $url = uploadFile($img, '/uploads/imgproduct/');
+            if ($img && $img['error'] == 0 && $img['size']  >  0) { // Kiểm tra xem có sửa ảnh không, có lỗi không, size ảnh có đúng không,
+                $url = uploadFile($img, '/uploads/imgproduct/'); // Thay ảnh cũ thành ảnh mới
                 if ($_POST['img_old']) {
-                    deleteFile($_POST['img_old']);
+                    deleteFile($_POST['img_old']); // Xóa ảnh cũ
                 }
             }
             $this->modelProduct->updateProduct($id, $pro_name, $price, $cate_id, $quantity, $sale, $status, $url);

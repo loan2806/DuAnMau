@@ -8,7 +8,7 @@
         <div class="footer-links">
             <h3>Liên kết</h3>
             <ul>
-                <li><a href="#">Trang chủ</a></li>
+                <li><a href="?act=/">Trang chủ</a></li>
                 <li><a href="#">Sản phẩm</a></li>
                 <li><a href="#">Tin tức</a></li>
                 <li><a href="#">Liên hệ</a></li>

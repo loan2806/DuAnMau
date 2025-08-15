@@ -28,11 +28,9 @@ class CartModel
 
         // Sử dụng prepared statement để bảo mật và xử lý giá trị
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':cartId', $cartId, PDO::PARAM_INT);
+        $stmt->bindParam(':cartId', $cartId, PDO::PARAM_INT); //bindParam gắn theo tham chiếu, khi muôns thay thôi biến trước khi query
         $stmt->execute();
-
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
         return $data;
     }
 
@@ -44,7 +42,7 @@ class CartModel
         if (!$idCart) {
             $cartId = $this->createCart($idUser);
         }
-        // if()
+        
 
         $addCartItem = $this->add_cart_item($cartId, $idProduct, $quantity);
         header("Location: " . BASE_URL);
@@ -127,74 +125,53 @@ class CartModel
      */
     public function increaseQuantity($cartItemId)
     {
-        // 1. Lấy thông tin chi tiết của cart item
         $cartItem = $this->getCartItemById($cartItemId);
-
-        // 2. Nếu không tìm thấy mục giỏ hàng, trả về false
         if (!$cartItem) {
             return false;
         }
+        $currentQuantity = (int)$cartItem['quantity']; // Số lượng sản phẩm trong giỏ hàng
 
-        // 3. Lấy số lượng hiện tại của sản phẩm trong giỏ
-        $currentQuantity = (int)$cartItem['quantity'];
-        // Lấy ID của sản phẩm để kiểm tra số lượng tồn kho
         $productId = $cartItem['product_id'];
 
-        // 4. Lấy số lượng tồn kho thực tế của sản phẩm
-        $stockQuantity = $this->getQuantityProductWhereIdProduct($productId);
+        $stockQuantity = $this->getQuantityProductWhereIdProduct($productId); // Lấy ra số lượng đang có của sản phẩm
 
-        // 5. Tính toán số lượng mới
-        $newQuantity = $currentQuantity + 1;
-
-        // 6. Kiểm tra xem số lượng mới có vượt quá số lượng tồn kho không
-        if ($newQuantity <= $stockQuantity) {
-            // 7. Cập nhật số lượng nếu hợp lệ, tái sử dụng hàm đã có
-            return $this->updateQuantityProductWhereCartItem($cartItemId, $newQuantity);
+        if ($currentQuantity + 1 <= $stockQuantity) {
+            // cập nhật số lượng nếu hợp lệ, tái sử dụng hàm đã có
+            return $this->updateQuantityProductWhereCartItem($cartItemId, $currentQuantity + 1);
         }
 
-        // 8. Trả về false nếu không thể tăng vì vượt quá tồn kho
+        //trả về false nếu không thể tăng vì vượt quá tồn kho
         return false;
     }
 
-    /**
-     * Giảm số lượng của một sản phẩm trong giỏ hàng.
-     * @param int $cartItemId ID của mục trong giỏ hàng.
-     * @return bool Trả về true nếu cập nhật thành công, ngược lại là false.
-     */
+
     public function decreaseQuantity($cartItemId)
     {
-        // 1. Lấy thông tin chi tiết của cart item
+        // lấy thông tin chi tiết của cart item
         $cartItem = $this->getCartItemById($cartItemId);
 
-        // 2. Nếu không tìm thấy mục giỏ hàng, trả về false
+        // nếu không tìm thấy mục giỏ hàng, trả về false
         if (!$cartItem) {
             return false;
         }
 
-        // 3. Lấy số lượng hiện tại
-        $currentQuantity = (int)$cartItem['quantity'];
-
-        // 4. Tính toán số lượng mới và kiểm tra số lượng mới có nhỏ hơn 1 không
-        $newQuantity = $currentQuantity - 1;
-        if ($newQuantity >= 1) {
-            // 5. Cập nhật số lượng nếu hợp lệ, tái sử dụng hàm đã có
-            return $this->updateQuantityProductWhereCartItem($cartItemId, $newQuantity);
+        $currentQuantity = (int)$cartItem['quantity']; // $cartItem['quantity'] đang là kiểu string, nên  phải ép kiểu về int
+        if ($currentQuantity > 1) { // Có thể giảm 1
+            return $this->updateQuantityProductWhereCartItem($cartItemId, $currentQuantity - 1);
+        } else { // Sau khi giảm mà nhỏ hơn hoặc bằng 0 thì sẽ xóa luôn sản phẩm đó khỏi giỏ hàng
+            return $this->removeCartItem($cartItemId);
         }
 
-        // 6. Trả về false nếu không thể giảm vì số lượng đã là 0 hoặc bé hơn 0
+        // Trả về false nếu không thể giảm vì số lượng đã là 0 hoặc bé hơn 0
         return false;
     }
 
-    /**
-     * Xóa một sản phẩm khỏi giỏ hàng.
-     * @param int $cartItemId ID của mục trong giỏ hàng.
-     * @return bool Trả về true nếu xóa thành công, ngược lại là false.
-     */
+
     public function removeCartItem($cartItemId)
     {
-        // 1. Xây dựng câu lệnh SQL để xóa mục giỏ hàng dựa trên ID
+        // xây dựng câu lệnh sql để xóa mục giỏ hàng dựa trên id
         $sql = "DELETE FROM cart_item WHERE id = $cartItemId";
-        // 2. Thực thi câu lệnh và trả về kết quả
+        // thực thi câu lệnh và trả về kết quả
         $stmt = $this->conn->query($sql);
         return $stmt->execute();
     }

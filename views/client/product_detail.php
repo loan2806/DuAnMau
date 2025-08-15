@@ -5,12 +5,13 @@ require_once 'header.php';
     <div class="container" style="margin-top: 40px;">
         <div class="product-detail-layout">
             <div class="product-detail-image">
+                <!-- htmlspecialchars: dùng để tránh trùng với thẻ của html -->
                 <img src="<?= BASE_URL . htmlspecialchars($product['img']) ?>"
                      alt="<?= htmlspecialchars($product['pro_name']) ?>">
             </div>
             <div class="product-detail-info">
                 <h1><?= htmlspecialchars($product['pro_name']) ?></h1>
-
+                
                 <div class="price-section">
                     <?php if ($product['sale'] > 0): ?>
                         <span class="sale-price">

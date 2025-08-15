@@ -33,7 +33,7 @@ require_once './views/admin/header.php';
             <label for="status">Trạng thái</label>
             <select name="status" id="">
                 <option <?= $product['status'] == 1 ?  "selected" : ""   ?> value="1">Bán</option>
-                <option <?= $product['status'] == 0 ?  "selected" : ""   ?> value="0">Không bán</option>
+                <option <?= $product['status'] == 0 ?  "selected" : ""   ?> value="0">Chuẩn bị bán</option>
             </select>
             <br>
             <label for="cate_id">Danh mục</label>

@@ -32,6 +32,7 @@
                             </form>
 
                             <span><?= htmlspecialchars($item['quantity']) ?></span>
+                           <!-- htmlspecialchars: chuyển đổi các ký tự đặc biệt thành dạng mã HTML an toàn -->
 
                             <form action="<?= BASE_URL ?>?act=update_cart" method="POST">
                                 <input type="hidden" name="cart_id" value="<?= htmlspecialchars($item['cart_item_id']) ?>">

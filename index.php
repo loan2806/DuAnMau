@@ -21,10 +21,10 @@ require_once './models/CategoryModel.php';
 require_once './models/CartModel.php';
 
 // Route
-if (isset($_GET['mode']) && $_GET['mode'] == 'admin') {
+if (isset($_GET['mode']) && $_GET['mode'] == 'admin') {// kiểm tra tham số mode có tồn tại trên url hay k
     // Chỉ admin (role = 1) mới được vào
     if (empty($_SESSION['islogin']) || $_SESSION['role'] != 1) {
-        header('Location: ' . BASE_URL . '?mode=auth&act=login');
+        header('Location: ' . BASE_URL . '?mode=auth&act=login');// điều hướng về trang đnhap
         exit();
     }
     require_once('views/admin/index.php');
@@ -32,15 +32,9 @@ if (isset($_GET['mode']) && $_GET['mode'] == 'admin') {
     require_once('views/client/index.php');
 }
 
+//empty($_SESSION['islogin']): ktra ng dùng đã đnhap hay chưa
+//$_SESSION['role'] != 1): ktra vai trò role kp là admin
 
-// Route
-// if (isset($_GET['mode']) && $_GET['mode'] == 'admin') {
-//     require_once('views/admin/index.php');
-// } else {
-//     require_once('views/client/index.php');
-// }
-
-// $act = $_GET['act'] ?? '/';
 
 
 // // Để bảo bảo tính chất chỉ gọi 1 hàm Controller để xử lý request thì mình sử dụng match

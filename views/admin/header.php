@@ -10,17 +10,17 @@
 <header class="main-header">
     <div class="container header-container">
         <div class="logo">
-            <a href="<?= BASE_URL ?>">CAS FRUIT</a>
+            <a href="<?= BASE_URL ?>">MORNING FRUIT</a>
         </div>
         <div class="right-header">
             <nav class="main-nav">
                 <ul class="nav-list">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Trang chủ</a>
+                        <a href="?act=/" class="nav-link">Trang chủ</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="#" class="nav-link">Sản phẩm</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a href="#" class="nav-link">Tin tức</a>
                     </li>

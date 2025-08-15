@@ -21,3 +21,5 @@
         </div>
     </div>
 <?php endif; ?>
+
+<!-- number_forma: định dạng số thành chuỗi có phân cách hàng nghìn, dấu thập phân  -->

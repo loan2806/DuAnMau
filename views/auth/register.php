@@ -16,6 +16,14 @@
             margin: 0;
         }
 
+        .logo {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 700;
+            color: #fda085;
+            margin-bottom: 20px;
+        }
+
         .register-container {
             background: #fff;
             padding: 25px 30px;
@@ -91,22 +99,23 @@
 
     ?>
     <div class="register-container">
+        <div class="logo">MORNING FRUIT</div>
         <h2>Đăng ký</h2>
         <?php if (!empty($error)): ?>
             <p><?= $error ?></p>
         <?php endif; ?>
         <form action="" method="POST">
             <label for="username">Tên đăng nhập</label>
-            <input type="text" id="username" name="username" required>
+            <input type="text" id="username" name="username">
 
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email">
 
             <label for="password">Mật khẩu</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" name="password">
 
             <label for="confirm_password">Xác nhận mật khẩu</label>
-            <input type="password" id="confirm" name="confirm" required>
+            <input type="password" id="confirm" name="confirm">
 
             <button type="submit">Đăng ký</button>
         </form>

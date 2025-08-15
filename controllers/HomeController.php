@@ -50,17 +50,17 @@ class HomeController
         if ($user) {
             $idUser = $_SESSION['id'];
             // lấy ra id người dùng và lấy ra id giỏ hàng
-            $idCart = $this->cart->isCartUserWhereIdUser($idUser);
+            $idCart = $this->cart->isCartUserWhereIdUser($idUser); // Lấy ra id của giỏ hàng theo $idUser
 
             $cartId = $idCart['id'];
-            if (!$idCart) {
+            if (!$idCart) { // Đã có giỏ hàng rồi hay chưa, nếu chưa có thì tạo
                 $cartId = $this->cart->createCart($idUser);
             }
-            $allCart = $this->cart->getAllCart($cartId);
-            // nghĩ xem làm như nào
+            $allCart = $this->cart->getAllCart($cartId); // Lấy ra danh sách sản phẩm trong giỏ hàng
+            
 
-            $countCart = $this->cart->getQuantityProductWhereCartId($cartId);
-            $category = $this->category->danhsach();
+            $countCart = $this->cart->getQuantityProductWhereCartId($cartId); // Lấy tỏng số lượng sản phẩm trong giỏ hàng
+            $category = $this->category->danhsach(); 
             include PATH_ROOT . '/views/client/cart.php';
         } else {
             echo "<script>alert('Bạn cần đăng nhập');</script>";
@@ -108,8 +108,8 @@ class HomeController
             echo "Sản phẩm ko tồn tại";
             exit();
         }
-        $category = $this->category->danhsach();
-        $product = $this->product->getOneProductById($id);
+        $category = $this->category->danhsach(); // Lấy ra danh sách danh mục
+        $product = $this->product->getOneProductById($id); // Lấy chi tiết sản phẩm
         require PATH_ROOT . "/views/client/product_detail.php";
     }
     public function category($id)

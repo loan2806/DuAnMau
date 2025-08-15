@@ -42,21 +42,18 @@ class AuthModel
     //         ":user_name" => $name,
     //         ":email" => $email,
     //         ":password" => $password,
-            
+
     //     ]);
     // }
     public function createUser($name, $email, $password)
-{
-    $sql = "INSERT INTO `users` (`name`, `email`, `password`, `role`)
+    {
+        $sql = "INSERT INTO `users` (`name`, `email`, `password`, `role`)
             VALUES (:user_name, :email, :password, 0)";
-    $stmt = $this->conn->prepare($sql);
-    $stmt->execute([
-        ":user_name" => $name,
-        ":email" => $email,
-        ":password" => $password
-    ]);
-}
-
-   
-    
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            ":user_name" => $name,
+            ":email" => $email,
+            ":password" => $password
+        ]);
+    }
 }
